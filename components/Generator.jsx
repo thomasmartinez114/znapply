@@ -6,7 +6,6 @@ import Results from './Results';
 
 const Generator = () => {
   const [description, setDescription] = useState('');
-  const [tags, setTags] = useState('');
 
   const handleFormSubmit = async focusArea => {
     try {
@@ -23,6 +22,9 @@ const Generator = () => {
 
       const data = await res.json();
       console.log('API response:', data);
+
+      // update the states
+      setDescription(data.description || 'No description received');
     } catch (error) {
       console.error('Error during form submission:', error);
     }
@@ -32,7 +34,7 @@ const Generator = () => {
     <div>
       {/* Ensure handleFormSubmit is passed here */}
       <SearchBar onSubmit={handleFormSubmit} />
-      <Results description={description} tags={tags} />
+      <Results description={description} />
     </div>
   );
 };
