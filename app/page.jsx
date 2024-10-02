@@ -1,9 +1,11 @@
 // components to import
 
+import Generator from '@/components/Generator';
+
 const HomePage = () => {
   return (
     <>
-      <h3>Hello World</h3>
+      <Generator />
     </>
   );
 };
