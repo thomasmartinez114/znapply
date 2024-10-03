@@ -2,7 +2,7 @@ import openai from '../config/openaiConfig.js';
 
 export const generateSOAP = async input => {
   try {
-    console.log('Input received:', input); // Log input from frontend
+    // console.log('Input received:', input); // Log input from frontend
 
     const description = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -15,7 +15,7 @@ export const generateSOAP = async input => {
       max_tokens: 100,
     });
 
-    console.log('OpenAI response:', description.choices[0].message.content); // Log the response from OpenAI
+    // console.log('OpenAI response:', description.choices[0].message.content); // Log the response from OpenAI
 
     return {
       description: description.choices[0].message.content,

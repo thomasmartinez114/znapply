@@ -7,10 +7,10 @@ const SearchBar = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault(); // Prevent default form submission behavior
-    console.log('Form is being submitted'); // Log to confirm form submission
+    // console.log('Form is being submitted'); // Log to confirm form submission
 
     if (onSubmit) {
-      console.log('Calling onSubmit with focusArea:', focusArea); // Log the input being sent
+      // console.log('Calling onSubmit with focusArea:', focusArea); // Log the input being sent
       onSubmit(focusArea); // Call parent function with input
     }
   };
@@ -30,7 +30,7 @@ const SearchBar = ({ onSubmit }) => {
             id='focus-area'
             value={focusArea}
             onChange={e => {
-              console.log('Input changed to:', e.target.value); // Log the input value
+              // console.log('Input changed to:', e.target.value); // Log the input value
               setFocusArea(e.target.value); // Update state on input change
             }}
             placeholder='Enter Focus Area(s)'

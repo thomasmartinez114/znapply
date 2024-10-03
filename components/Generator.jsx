@@ -21,7 +21,7 @@ const Generator = () => {
       }
 
       const data = await res.json();
-      console.log('API response:', data);
+      // console.log('API response:', data);
 
       // update the states
       setDescription(data.description || 'No description received');
@@ -31,7 +31,7 @@ const Generator = () => {
   };
 
   return (
-    <div>
+    <div className='space-y-6'>
       {/* Ensure handleFormSubmit is passed here */}
       <SearchBar onSubmit={handleFormSubmit} />
       <Results description={description} />
