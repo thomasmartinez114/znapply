@@ -6,7 +6,7 @@ const SearchBar = ({ onSubmit }) => {
   const [focusArea, setFocusArea] = useState('');
 
   const handleSubmit = e => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     // console.log('Form is being submitted'); // Log to confirm form submission
 
     if (onSubmit) {
