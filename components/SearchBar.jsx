@@ -1,7 +1,7 @@
 'use client'; // Ensure this component is a client component
 
 import React, { useState } from 'react';
-import { ArrowDownIcon } from '@heroicons/react/24/outline';
+import { IoIosArrowDropdownCircle } from 'react-icons/io';
 
 const SearchBar = ({ onSubmit }) => {
   const [focusArea, setFocusArea] = useState('');
@@ -36,7 +36,7 @@ const SearchBar = ({ onSubmit }) => {
           >
             {focusArea || 'Focus Area'}{' '}
             {/* Display selected item or placeholder */}
-            <ArrowDownIcon className='w-6' />
+            <IoIosArrowDropdownCircle />
           </div>
 
           {/* Conditionally render the dropdown based on state */}
@@ -48,13 +48,13 @@ const SearchBar = ({ onSubmit }) => {
           >
             <div
               className='cursor-pointer hover:bg-gray-300 p-4'
-              onClick={() => handleSelection('Head')} 
+              onClick={() => handleSelection('Head')}
             >
               Head
             </div>
             <div
               className='cursor-pointer hover:bg-gray-300 p-4'
-              onClick={() => handleSelection('Neck')} 
+              onClick={() => handleSelection('Neck')}
             >
               Neck
             </div>
