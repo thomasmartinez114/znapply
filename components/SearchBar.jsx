@@ -1,18 +1,26 @@
 'use client'; // Ensure this component is a client component
 
 import React, { useState } from 'react';
+import { ArrowDownIcon } from '@heroicons/react/24/outline';
 
 const SearchBar = ({ onSubmit }) => {
   const [focusArea, setFocusArea] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log('Form is being submitted'); // Log to confirm form submission
-
     if (onSubmit) {
-      // console.log('Calling onSubmit with focusArea:', focusArea); // Log the input being sent
       onSubmit(focusArea); // Call parent function with input
     }
+  };
+
+  const toggleDropDown = () => {
+    setIsDropdownOpen(!isDropdownOpen); // Toggle dropdown visibility
+  };
+
+  const handleSelection = selection => {
+    setFocusArea(selection); // Update focusArea with the selected dropdown item
+    setIsDropdownOpen(false); // Close dropdown after selection
   };
 
   return (
@@ -21,22 +29,45 @@ const SearchBar = ({ onSubmit }) => {
         onSubmit={handleSubmit} // This binds the handleSubmit function to the form submission
         className='mt-3 mx-auto max-w-2xl w-full flex flex-col md:flex-row items-center'
       >
-        <div className='w-full md:w-4/5 md:pr-2 mb-4 md:mb-0'>
-          <label htmlFor='focus-area' className='sr-only'>
-            Enter Focus Areas
-          </label>
-          <input
-            type='text'
-            id='focus-area'
-            value={focusArea}
-            onChange={e => {
-              // console.log('Input changed to:', e.target.value); // Log the input value
-              setFocusArea(e.target.value); // Update state on input change
-            }}
-            placeholder='Enter Focus Area(s)'
-            className='w-full px-4 py-3 rounded-lg border bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500'
-          />
+        <div className='relative' id='dropdownButton'>
+          <div
+            onClick={toggleDropDown} // Use onClick in React
+            className='border-solid border-gray-400 border-[1px] px-5 py-2 rounded cursor-pointer font-bold flex justify-between w-[200px] bg-white shadow-sm'
+          >
+            {focusArea || 'Focus Area'}{' '}
+            {/* Display selected item or placeholder */}
+            <ArrowDownIcon className='w-6' />
+          </div>
+
+          {/* Conditionally render the dropdown based on state */}
+          <div
+            className={`rounded border-gray-500 bg-white p-8 absolute top-[50px] w-[400px] shadow-md ${
+              isDropdownOpen ? '' : 'hidden'
+            }`}
+            id='dropdown'
+          >
+            <div
+              className='cursor-pointer hover:bg-gray-300 p-4'
+              onClick={() => handleSelection('Head')} 
+            >
+              Head
+            </div>
+            <div
+              className='cursor-pointer hover:bg-gray-300 p-4'
+              onClick={() => handleSelection('Neck')} 
+            >
+              Neck
+            </div>
+            <div
+              className='cursor-pointer hover:bg-gray-300 p-4'
+              onClick={() => handleSelection('Shoulders')}
+            >
+              Shoulders
+            </div>
+            {/* Add more items here as needed */}
+          </div>
         </div>
+
         <button
           type='submit'
           className='md:ml-4 mt-4 md:mt-0 w-full md:w-auto px-6 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500'
